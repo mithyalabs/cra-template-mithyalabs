@@ -1,26 +1,11 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { THEME_PALETTE } from './themeConstants';
+
+
+const { others: otherColors, ...palette } = THEME_PALETTE;
 
 export default createMuiTheme({
-    palette: {
-        /* primary: {
-            light: '',
-            main: '',
-            dark: '',
-            contrastText: ''
-        },
-        secondary: {
-            light: '',
-            main: '',
-            dark: '',
-            contrastText: ''
-        },
-        error: {
-            light: '',
-            main: '',
-            dark: '',
-            contrastText: ''
-        }, */
-    },
+    palette,
     typography: {
         h1: {
             fontSize: 96

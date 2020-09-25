@@ -1,2 +1,2 @@
 # react-ts-boilerplate
-React with typescript boilerplate
+React Boilerplate: Typescript, Material-Ui, Redux

@@ -5,13 +5,8 @@ import Theme from './Theme';
 import RootLayout from './Screens/RootLayout';
 import Boot from './Boot';
 
-
-
-
-
 const App: React.FC = () => {
   Boot().then(() => {
-
   });
   return (
     <BrowserRouter>

@@ -1,23 +1,14 @@
-import React, { FC } from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import React, { FC, useState, useContext } from 'react';
+import { Typography, Button } from '@material-ui/core';
+import { AppToastContext } from '../../Contexts/AppToastContext';
 
-export interface LandingScreenProps {
-
-}
-
-const LandingScreen: FC<LandingScreenProps> = (props) => {
-    const classes = useStyles();
-
+const Landing: FC = () => {
+    const { showToast } = useContext(AppToastContext);
     return (
-        <Box>
-            Welcome to React-material UI
-        </Box>
+        <div>
+            <Typography variant="h2">Mithyalabs Boilerplate.</Typography>
+        </div>
     )
 }
 
-const useStyles = makeStyles<Theme, any>((theme) => ({
-
-}));
-
-export default LandingScreen;
+export default Landing;

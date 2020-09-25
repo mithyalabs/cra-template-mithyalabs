@@ -1,7 +1,7 @@
 {
-  "name": "cra-template-typescript-materialui",
+  "name": "cra-template-mithyalabs",
   "version": "1.1.1",
-  "description": "react typescript template with material-ui",
+  "description": "React Boilerplate: Typescript, Material-Ui, Redux",
   "main": "template.json",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,11 +15,12 @@
     "cra-template-typescript",
     "react-template",
     "react",
+    "redux",
     "template",
     "typescript",
     "material-ui"
   ],
-  "author": "mukut brahma",
+  "author": "Mukut Brahma",
   "license": "MIT",
   "files": [
     "template",

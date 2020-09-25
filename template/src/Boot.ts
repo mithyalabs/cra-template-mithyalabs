@@ -1,7 +1,7 @@
 import Config from './Config';
-import axios from 'axios';
+import Utils from './Utils';
 
-const VALIDATE_CONFIG_PROPERTIES = ['BASE_URL'];
+const VALIDATE_CONFIG_PROPERTIES = ['BASE_URL', 'API_URL'];
 
 const validateConfig = () => {
     VALIDATE_CONFIG_PROPERTIES.forEach(key => {
@@ -15,7 +15,13 @@ const validateConfig = () => {
 const Boot = () => {
     return new Promise((resolve, reject) => {
         validateConfig();
-        axios.defaults.baseURL = Config.get('BASE_URL');
+        /** Override console.log as per environment file */
+        if (Config.get('CONSOLE_LOGGING') === false) {
+            console.log = () => { }
+        }
+
+        Utils.setBaseAPI_URL(Config.get('API_URL'))
+
         resolve();
     })
 };
