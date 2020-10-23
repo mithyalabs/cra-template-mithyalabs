@@ -1,10 +1,12 @@
 const JSON = require('./swagger.json');
 const fs = require('fs');
 
+
+
 generateModels(JSON);
 
 
-function generateModels(JSON) {
+async function generateModels(JSON) {
     const paths = Object.keys(JSON.paths);
 
     let curModel = '';
@@ -57,9 +59,9 @@ function getRequestMethods(path, structure, method = 'get') {
     let defn = '';
 
     defn += `
-    /** 
-     * ${summary ? summary : ''}
-     */ `;
+/** 
+ * ${summary ? summary : ''}
+ */ `;
 
 
     let methodSignature = `(`;
@@ -85,19 +87,19 @@ function getRequestMethods(path, structure, method = 'get') {
     methodSignature += `)`;
 
     defn += `
-    static ${methodName}${methodSignature} {
-        return axios.request({
-            url: \`${methodApiUrl}\`,
-            method: '${method}',
-            ${requestParams.length ? `params: {
-                ${requestParams.join(', ')}
-            },`: ''}
-            ${requestBody.length ? `data: {
-                ${requestBody.join(', ')}
-            },`: ''}
-        })
-    }
-    `
+export function ${methodName}<T = any>${methodSignature} {
+    return axios.request<T>({
+        url: \`${methodApiUrl}\`,
+        method: '${method}',
+        ${requestParams.length ? `params: {
+            ${requestParams.join(', ')}
+        },`: ''}
+        ${requestBody.length ? `data: {
+            ${requestBody.join(', ')}
+        },`: ''}
+    })
+}
+`
 
 
     return defn;
@@ -110,16 +112,12 @@ function getDefnOpeningWrapper(model) {
     return `
 import axios from 'axios';
 
-class ${model}Model {
-
-    `
+// THIS IS A GENERATED FILE; PLEASE DO NOT MAKE CHANGES HERE
+`
 }
 
 function getDefnClosingWrapper(model) {
-    return `
-}
-export default ${model}Model
-    `
+    return ``
 }
 
 function getMethodName(method, apiPath) {
@@ -128,12 +126,80 @@ function getMethodName(method, apiPath) {
 }
 
 
+
+
+
+function getUtilFileDefn(name) {
+    return `
+// INCLUDE YOUR CUSTOM UTILITIES HERE
+
+export function getModelName() {
+    return '${name}'
+}
+`
+}
+
+
+function getIndexFileDefn() {
+    return `
+import * as API from './api';
+import * as utils from './utils';
+import * as types from './@types';
+
+export default {
+    ...API,
+    ...utils,
+    ...types
+}
+    `
+}
+
+
+function getTypesFileDefn(name) {
+    return `
+// INCLUDE YOUR TYPE DEFINITIONS HERE
+
+export interface T${name} {
+    
+}
+    `
+}
+
 function writeDefn(name, data) {
-    const OUT_DIR = './models';
+
+
+    const BASE_PATH = './src/Models';
+    const OUT_DIR = BASE_PATH + '/' + name;
+
+    if (!fs.existsSync(BASE_PATH)) {
+        fs.mkdirSync(BASE_PATH);
+    }
+
     if (!fs.existsSync(OUT_DIR)) {
         fs.mkdirSync(OUT_DIR);
     }
-    fs.writeFile(OUT_DIR + `/${name}.ts`, data, (err) => {
+
+    fs.writeFile(OUT_DIR + `/api.ts`, data, (err) => {
         if (err) throw err;
-    })
+    });
+
+    if (!fs.existsSync(OUT_DIR + '/utils.ts')) {
+        fs.writeFile(OUT_DIR + '/utils.ts', getUtilFileDefn(name), (err) => {
+            if (err) throw err;
+        })
+    }
+
+    if (!fs.existsSync(OUT_DIR + '/@types.ts')) {
+        fs.writeFile(OUT_DIR + '/@types.ts', getTypesFileDefn(name), (err) => {
+            if (err) throw err;
+        })
+    }
+
+
+    if (!fs.existsSync(OUT_DIR + '/index.ts')) {
+        fs.writeFile(OUT_DIR + '/index.ts', getIndexFileDefn(), (err) => {
+            if (err) throw err;
+        })
+    }
+
 }
