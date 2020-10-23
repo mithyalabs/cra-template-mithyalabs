@@ -144,12 +144,11 @@ function getIndexFileDefn() {
     return `
 import * as API from './api';
 import * as utils from './utils';
-import * as types from './@types';
+export * from './@types';
 
 export default {
     ...API,
-    ...utils,
-    ...types
+    ...utils
 }
     `
 }
@@ -166,10 +165,9 @@ export interface T${name} {
 }
 
 function writeDefn(name, data) {
-
-
     const BASE_PATH = './src/Models';
     const OUT_DIR = BASE_PATH + '/' + name;
+
 
     if (!fs.existsSync(BASE_PATH)) {
         fs.mkdirSync(BASE_PATH);
