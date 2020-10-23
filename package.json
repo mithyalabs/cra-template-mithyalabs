@@ -1,6 +1,6 @@
 {
   "name": "cra-template-mithyalabs",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "React Boilerplate: Typescript, Material-Ui, Redux",
   "main": "template.json",
   "scripts": {
@@ -20,7 +20,7 @@
     "typescript",
     "material-ui"
   ],
-  "author": "Mukut Brahma",
+  "author": "Mithyalabs",
   "license": "MIT",
   "files": [
     "template",
