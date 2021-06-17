@@ -1,9 +1,4 @@
-import { fade } from '@material-ui/core/styles';
-
-
-
 export const THEME_PALETTE = {
-
     grey: {
         100: '#262626',
         200: '#4D4D4D',
@@ -16,35 +11,33 @@ export const THEME_PALETTE = {
         900: '#333333',
     },
     text: {
-        primary: "#333333",
-        secondary: "#333333"
+        primary: '#333333',
+        secondary: '#333333',
         // primary: "#4D4D4D",
         // secondary: "#808080"
     },
     background: {
-        default: "#F5F5F5",
-        paper: "#fff"
+        default: '#F5F5F5',
+        paper: '#fff',
     },
     common: {
         black: '#000',
-        white: '#fff'
+        white: '#fff',
     },
     action: {
-        active: '#000'
+        active: '#000',
     },
     error: {
-        main: '#B71840'
+        main: '#B71840',
     },
-    others: {
-
-    },
+    others: {},
     primary: {
         main: '#8525E5',
-        contrastText: '#FFFFFF'
+        contrastText: '#FFFFFF',
     },
     secondary: {
         main: '#FFAF00',
-        contrastText: '#FFFFFF'
+        contrastText: '#FFFFFF',
     },
     success: {
         main: '#4caf50',
@@ -54,10 +47,7 @@ export const THEME_PALETTE = {
     },
     info: {
         main: '#2196f3',
-    }
-}
+    },
+};
 
-
-export const GRADIENTS = [
-
-]
+export const GRADIENTS = [];

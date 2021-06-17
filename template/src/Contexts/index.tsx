@@ -1,17 +1,14 @@
 import React from 'react';
-import AppDialogProvider from "./AppDialogContext"
+import AppDialogProvider from './AppDialogContext';
 import AppToastProvider from './AppToastContext';
 
-
 const RootContextProviders: React.FC = (props) => {
-
+    const { children } = props;
     return (
         <AppDialogProvider>
-            <AppToastProvider>
-                {props.children}
-            </AppToastProvider>
+            <AppToastProvider>{children}</AppToastProvider>
         </AppDialogProvider>
-    )
-}
+    );
+};
 
-export default RootContextProviders
+export default RootContextProviders;

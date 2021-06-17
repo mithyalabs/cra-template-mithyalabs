@@ -2,11 +2,11 @@ import { DialogProps, AppDialog } from 'mui-wrapper-utils';
 import React, { FC, useState } from 'react';
 
 interface ContextProps {
-    open: boolean,
-    title: string,
-    content: React.ReactNode,
-    showDialog: (content: React.ReactNode, options?: Partial<IAppDialog>) => void,
-    hideDialog: () => void
+    open: boolean;
+    title: string;
+    content: React.ReactNode;
+    showDialog: (content: React.ReactNode, options?: Partial<IAppDialog>) => void;
+    hideDialog: () => void;
 }
 
 export const AppDialogContext = React.createContext<ContextProps>({
@@ -14,53 +14,70 @@ export const AppDialogContext = React.createContext<ContextProps>({
     title: '',
     content: null,
     showDialog: (content: React.ReactNode, options?: Partial<IAppDialog>) => { },
-    hideDialog: () => { }
+    hideDialog: () => { },
 });
 
 export interface IAppDialog extends DialogProps {
-    content?: React.ReactNode
+    content?: React.ReactNode;
 }
 
 export const useAppDialog = (initialState: IAppDialog) => {
     const [dialogState, setDialogState] = useState(initialState);
 
-    const showDialog = (content: React.ReactNode, options?: Partial<IAppDialog>) => {
+    const showDialog = (
+        content: React.ReactNode,
+        options?: Partial<IAppDialog>
+    ) => {
         setDialogState({
             ...dialogState,
             open: true,
             content,
-            ...options
-        })
-    }
+            ...options,
+        });
+    };
     const hideDialog = () => {
         setDialogState({
             ...dialogState,
-            open: false
+            open: false,
         });
-    }
+    };
     return { ...dialogState, showDialog, hideDialog };
-}
+};
 
 export const AppDialogProvider: FC = (props) => {
-    const { content, title = '', showDialog, hideDialog, open, ...appDialogProps } = useAppDialog({
+    const {
+        content,
+        title = '',
+        showDialog,
+        hideDialog,
+        open,
+        ...appDialogProps
+    } = useAppDialog({
         handleClose: () => { },
         title: '',
-        open: false
+        open: false,
     });
+    const { children } = props;
     return (
-        <AppDialogContext.Provider value={{
-            title,
-            content,
-            showDialog,
-            hideDialog,
-            open
-        }}>
-            {props.children}
-            <AppDialog {...appDialogProps} open={open} title={title} handleClose={hideDialog} >
+        <AppDialogContext.Provider
+            value={{
+                title,
+                content,
+                showDialog,
+                hideDialog,
+                open,
+            }}
+        >
+            {children}
+            <AppDialog
+                {...appDialogProps}
+                open={open}
+                title={title}
+                handleClose={hideDialog}
+            >
                 {content}
             </AppDialog>
         </AppDialogContext.Provider>
-    )
-}
+    );
+};
 export default AppDialogProvider;
-

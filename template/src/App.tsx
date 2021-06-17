@@ -6,8 +6,7 @@ import RootLayout from './Screens/RootLayout';
 import Boot from './Boot';
 
 const App: React.FC = () => {
-  Boot().then(() => {
-  });
+  Boot().then(() => { });
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={Theme}>
@@ -15,6 +14,6 @@ const App: React.FC = () => {
       </MuiThemeProvider>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
