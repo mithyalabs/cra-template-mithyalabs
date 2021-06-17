@@ -1,7 +1,7 @@
 ---
-to: src/Models/<%= name %>/@types.ts
+to: src/Models/<%= Name %>/@types.ts
 ---
 
-export interface T<%= name %> {
+export interface T<%= Name %> {
     
 }

@@ -20,9 +20,11 @@ const Boot = () => {
             console.log = () => { }
         }
 
-        Utils.setBaseAPI_URL(Config.get('API_URL'))
+        const apiUrl = Config.get('API_URL');
+        console.log('API url ', apiUrl);
+        if (apiUrl) Utils.setBaseAPI_URL(apiUrl);
 
-        resolve();
+        resolve(true);
     })
 };
 

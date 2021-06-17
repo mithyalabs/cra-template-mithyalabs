@@ -1,9 +1,13 @@
 ---
-to: src/Stores/<%= name %>/index.ts
+to: src/Stores/<%= Name %>/index.ts
 ---
-export interface T<%= name %>State { }
+import { action, Action, thunk, Thunk } from 'easy-peasy';
+import { TRootStore } from 'Stores';
 
-const <%= name %>Store: T<%= name %>State = {};
 
-export default <%= name %>Store;
+export interface <%= Name %>State { }
+
+const <%= Name %>Store: <%= Name %>State = {};
+
+export default <%= Name %>Store;
 

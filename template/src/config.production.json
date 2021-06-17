@@ -1,9 +1,0 @@
-{
-    "BASE_URL": "",
-    "API_URL": "",
-    "IMAGE_KIT_BASE_URL": "https://mithya.imagekit.io/",
-    "IMAGE_KIT_URL_PATH": "",
-    "REDUX_LOGGER": false,
-    "CONSOLE_LOGGING": true,
-    "LOOPFRONT_LOGGING": false
-}
