@@ -16,7 +16,7 @@ const Boot = () => {
     return new Promise((resolve, reject) => {
         validateConfig();
         /** Override console.log as per environment file */
-        if (Config.get('CONSOLE_LOGGING') === false) {
+        if (Config.get('CONSOLE_LOGGING') === 'false') {
             console.log = () => { }
         }
 
